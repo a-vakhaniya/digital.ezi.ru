@@ -1,0 +1,51 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import AboutApproach from "../components/AboutApproach.astro";
+import PortfolioCard from "../components/PortfolioCard.astro";
+import TechStack from "../components/TechStack.astro";
+import ForWhom from "../components/ForWhom.astro";
+import LeadForm from "../components/LeadForm.astro";
+import massashImage from "../assets/images/case1-massash.png";
+import eziEducationImage from "../assets/images/case2-ezi-education.png";
+import rehabilitationImage from "../assets/images/case3-rehabilitation.png";
+---
+
+<Layout title="Главная">
+  <Hero />
+  <AboutApproach />
+
+  <section id="portfolio" class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-bold">Портфолио</h2>
+    <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
+      <PortfolioCard
+        title="Сайты, которые работают"
+        subtitle="massash.com — коммерческий сайт"
+        description="Написан вручную, без конструкторов. Интеграции с Авито и Яндекс.Услугами, автоматизация заявок через n8n, полная юридическая упаковка."
+        href="/cases/massash"
+        image={massashImage}
+        accent="mint"
+      />
+      <PortfolioCard
+        title="Один источник — три формата"
+        subtitle="EZI.Образование — архитектура ИИ-пайплайна"
+        description="Методология, которая превращает лекцию в конспект, аудио-пересказ и презентацию по единой логике. Продемонстрировано на 5 уроках."
+        href="/cases/ezi-education"
+        image={eziEducationImage}
+        accent="terracotta"
+      />
+      <PortfolioCard
+        title="ИИ там, где важна точность"
+        subtitle="ИИ в профессиональной практике — документирование реабилитации"
+        description="От выписки врача — к карте пациента, протоколу сессий и журналу динамики. Система не заменяет врача и не ставит диагнозы — она структурирует работу специалиста."
+        href="/cases/rehabilitation"
+        image={rehabilitationImage}
+        accent="lavender"
+      />
+    </div>
+  </section>
+
+  <TechStack />
+  <ForWhom />
+  <LeadForm />
+</Layout>

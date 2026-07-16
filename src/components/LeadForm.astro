@@ -1,0 +1,84 @@
+---
+import CTAButton from "./CTAButton.astro";
+---
+
+<section id="contact" class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+  <div class="rounded-3xl bg-white/60 p-8 shadow-soft sm:p-12">
+    <h2 class="text-3xl font-bold">Давайте обсудим задачу</h2>
+
+    <form id="lead-form-el" class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <input
+        type="text"
+        name="name"
+        placeholder="Имя"
+        required
+        class="rounded-xl border border-text/15 bg-bg px-4 py-3 outline-none focus:border-mint sm:col-span-1"
+      />
+      <input
+        type="text"
+        name="contact"
+        placeholder="Telegram/WhatsApp"
+        required
+        class="rounded-xl border border-text/15 bg-bg px-4 py-3 outline-none focus:border-mint sm:col-span-1"
+      />
+      <textarea
+        name="message"
+        placeholder="Кратко о задаче"
+        rows="4"
+        class="rounded-xl border border-text/15 bg-bg px-4 py-3 outline-none focus:border-mint sm:col-span-2"
+      ></textarea>
+
+      <label class="flex items-start gap-2 text-sm text-text/70 sm:col-span-2">
+        <input
+          type="checkbox"
+          name="consent"
+          required
+          class="mt-1 h-4 w-4 shrink-0 rounded border-text/15 accent-mint"
+        />
+        <span>
+          Я согласен(а) на обработку персональных данных в соответствии с
+          <a href="/privacy" class="underline hover:text-text">Политикой конфиденциальности</a>
+        </span>
+      </label>
+
+      <div class="sm:col-span-2">
+        <CTAButton variant="primary" class="w-full sm:w-auto">Отправить заявку</CTAButton>
+      </div>
+
+      <p id="lead-form-status" class="text-sm sm:col-span-2" role="status"></p>
+    </form>
+  </div>
+</section>
+
+<script>
+  // TODO: заменить на реальный URL n8n после настройки сценария
+  const N8N_WEBHOOK_URL = "https://n8n.example.com/webhook/lead-placeholder";
+
+  const form = document.getElementById("lead-form-el") as HTMLFormElement | null;
+  const status = document.getElementById("lead-form-status");
+
+  form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (!status) return;
+
+    const formData = new FormData(form);
+    const payload = Object.fromEntries(formData.entries());
+
+    status.textContent = "Отправка...";
+
+    try {
+      const response = await fetch(N8N_WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) throw new Error(`Request failed: ${response.status}`);
+
+      status.textContent = "Спасибо! Мы свяжемся с вами в ближайшее время.";
+      form.reset();
+    } catch (error) {
+      status.textContent = "Не удалось отправить заявку. Попробуйте ещё раз или напишите нам напрямую.";
+    }
+  });
+</script>

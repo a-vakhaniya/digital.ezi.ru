@@ -1,0 +1,47 @@
+---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+import Layout from "./Layout.astro";
+import CTAButton from "../components/CTAButton.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: ImageMetadata;
+  accent?: "mint" | "terracotta" | "lavender" | "sand";
+}
+
+const { title, description, image, accent = "mint" } = Astro.props;
+
+const accentBg = {
+  mint: "bg-mint/20",
+  terracotta: "bg-terracotta/20",
+  lavender: "bg-lavender/20",
+  sand: "bg-sand/20",
+};
+---
+
+<Layout title={title} description={description}>
+  <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+    <h1 class="text-4xl font-extrabold sm:text-5xl">{title}</h1>
+
+    <div class={`mt-8 aspect-video overflow-hidden rounded-3xl shadow-soft ${accentBg[accent]}`}>
+      {image && <Image src={image} alt={title} class="h-full w-full object-cover" quality={90} />}
+    </div>
+
+    <div class="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2">
+      <div>
+        <h2 class="text-2xl font-bold">Что готово</h2>
+        <p class="mt-4 text-text/70">Заглушка.</p>
+      </div>
+      <div>
+        <h2 class="text-2xl font-bold">Roadmap</h2>
+        <p class="mt-4 text-text/70">Заглушка.</p>
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <CTAButton href="/#contact" variant="primary">Обсудить проект</CTAButton>
+    </div>
+  </section>
+</Layout>
