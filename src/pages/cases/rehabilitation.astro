@@ -1,6 +1,71 @@
 ---
 import CaseLayout from "../../layouts/CaseLayout.astro";
+import LeadForm from "../../components/LeadForm.astro";
 import image from "../../assets/images/case3-rehabilitation.png";
 ---
 
-<CaseLayout title="Rehabilitation" description="Кейс Rehabilitation" accent="lavender" image={image} />
+<CaseLayout
+  title="ИИ в профессиональной практике — документирование реабилитации"
+  description="Кейс: документирование реабилитации"
+  accent="lavender"
+  image={image}
+>
+  <p slot="intro" class="mt-4 max-w-3xl text-lg text-text/70">
+    Годы практики с телом дали не только прикладной опыт, но и понимание, как
+    выстроить документирование сложного, живого процесса. Эта система —
+    результат переноса того же архитектурного мышления в область, где цена
+    ошибки высока, а данные особенно чувствительны.
+  </p>
+
+  <div class="mt-8 max-w-3xl rounded-2xl border border-lavender/40 bg-lavender/10 p-6">
+    <p class="text-text/80">
+      Система не заменяет врача и не ставит диагнозы — она структурирует и
+      сопровождает работу специалиста по массажу и ЛФК.
+    </p>
+  </div>
+
+  <div class="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2">
+    <div>
+      <h2 class="text-2xl font-bold">Готово и работает</h2>
+      <ul class="mt-4 space-y-3 text-text/70">
+        <li class="flex gap-3">
+          <span class="mt-1 text-mint">●</span>
+          <span>На основе выписки врача формируется карта пациента, протокол сессий массажа и ЛФК, журнал динамики, теоретическая база — заметно сокращая время на бумажную рутину и оставляя больше внимания для работы с клиентом</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="mt-1 text-mint">●</span>
+          <span>База знаний — в Obsidian, синхронизирована через Яндекс.Диск: доступ к протоколам возможен прямо во время выездной работы с клиентом</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="mt-1 text-mint">●</span>
+          <span>Двухуровневая архитектура: методология (библиотека промптов по категориям) отдельно от данных конкретного пациента</span>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="text-2xl font-bold">Roadmap</h2>
+      <ul class="mt-4 space-y-3 text-text/70">
+        <li class="flex gap-3">
+          <span class="mt-1 text-terracotta">→</span>
+          <span>Разработка персонализированных программ восстановления и здоровья — с учётом истории болезни, текущего физического состояния, образа жизни и других индивидуальных факторов клиента</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <blockquote class="mt-12 max-w-3xl border-l-4 border-lavender pl-6 text-lg font-medium text-text/80">
+    Та же архитектура — карта клиента, протокол работы, журнал динамики на
+    основе исходного документа — применима и за пределами реабилитации: в
+    юридической практике, персональном тренинге, коучинге и консалтинге,
+    ветеринарии — везде, где специалист ведёт сложный процесс с
+    чувствительными данными клиента.
+  </blockquote>
+
+  <div slot="cta">
+    <LeadForm wrapped={false} formSource="case_rehabilitation" title="Обсудить внедрение для вашей задачи" />
+    <p class="mt-4 max-w-3xl text-sm text-text/70">
+      Стоимость и архитектура решения рассчитываются индивидуально — в
+      зависимости от объёма ваших данных и требуемых форматов на выходе.
+    </p>
+  </div>
+</CaseLayout>

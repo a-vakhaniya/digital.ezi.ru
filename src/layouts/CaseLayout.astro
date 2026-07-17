@@ -25,23 +25,31 @@ const accentBg = {
   <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
     <h1 class="text-4xl font-extrabold sm:text-5xl">{title}</h1>
 
+    <slot name="intro">
+      <p class="mt-4 max-w-3xl text-lg text-text/70">Заглушка вступления.</p>
+    </slot>
+
     <div class={`mt-8 aspect-video overflow-hidden rounded-3xl shadow-soft ${accentBg[accent]}`}>
       {image && <Image src={image} alt={title} class="h-full w-full object-cover" quality={90} />}
     </div>
 
-    <div class="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2">
-      <div>
-        <h2 class="text-2xl font-bold">Что готово</h2>
-        <p class="mt-4 text-text/70">Заглушка.</p>
+    <slot>
+      <div class="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2">
+        <div>
+          <h2 class="text-2xl font-bold">Что готово</h2>
+          <p class="mt-4 text-text/70">Заглушка.</p>
+        </div>
+        <div>
+          <h2 class="text-2xl font-bold">Roadmap</h2>
+          <p class="mt-4 text-text/70">Заглушка.</p>
+        </div>
       </div>
-      <div>
-        <h2 class="text-2xl font-bold">Roadmap</h2>
-        <p class="mt-4 text-text/70">Заглушка.</p>
-      </div>
-    </div>
+    </slot>
 
     <div class="mt-12">
-      <CTAButton href="/#contact" variant="primary">Обсудить проект</CTAButton>
+      <slot name="cta">
+        <CTAButton href="/#contact" variant="primary">Обсудить проект</CTAButton>
+      </slot>
     </div>
   </section>
 </Layout>

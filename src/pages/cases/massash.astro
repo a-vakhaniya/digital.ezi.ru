@@ -1,6 +1,76 @@
 ---
 import CaseLayout from "../../layouts/CaseLayout.astro";
+import LeadForm from "../../components/LeadForm.astro";
 import image from "../../assets/images/case1-massash.png";
 ---
 
-<CaseLayout title="Massash" description="Кейс Massash" accent="mint" image={image} />
+<CaseLayout
+  title="massash.com — полный цикл коммерческой веб-разработки"
+  description="Кейс Massash"
+  accent="mint"
+  image={image}
+>
+  <p slot="intro" class="mt-4 max-w-3xl text-lg text-text/70">
+    Сайт для практики массажа и реабилитации в Москве — не демо и не шаблон, а
+    действующий коммерческий проект. Здесь видно то, что обычно скрыто под
+    капотом: от ручной вёрстки до автоматизации заявок и юридической
+    упаковки.
+  </p>
+
+  <a
+    href="https://massash.com/"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="mt-8 inline-flex items-center gap-2 text-lg font-medium text-mint hover:underline"
+  >
+    Смотреть сайт massash.com →
+  </a>
+
+  <p class="mt-12 max-w-3xl text-text/70">
+    Сложный функционал коммерческого проекта реализован через простые,
+    легковесные решения — без лишнего кода и избыточных зависимостей.
+  </p>
+
+  <div class="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2">
+    <div>
+      <h2 class="text-2xl font-bold">Готово и работает</h2>
+      <ul class="mt-4 space-y-3 text-text/70">
+        <li class="flex gap-3">
+          <span class="mt-1 text-mint">●</span>
+          <span>Сайт написан вручную на HTML/CSS/JS. Отказ от тяжёлых конструкторов и CMS обеспечивает максимальную скорость загрузки и независимость проекта</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="mt-1 text-mint">●</span>
+          <span>Интеграция с Авито и Яндекс.Услугами, реальные отзывы клиентов, онлайн-запись</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="mt-1 text-mint">●</span>
+          <span>Кастомные Python-скрипты (generate.py, fix_crosssell_pricelist.py) генерируют HTML-страницы из шаблонов и автоматизируют рутину: пакетное обновление прайсов и перекрёстных ссылок экономит часы монотонного труда и страхует от человеческого фактора</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="mt-1 text-mint">●</span>
+          <span>Мгновенное уведомление в Telegram через n8n исключает потерю лидов и ускоряет ответ клиенту, а параллельная выгрузка в Google Таблицы автоматически формирует чистую клиентскую базу без ручного ввода</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="mt-1 text-mint">●</span>
+          <span>Юридическая упаковка: оферта, политика конфиденциальности, реквизиты ИП</span>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="text-2xl font-bold">Roadmap</h2>
+      <ul class="mt-4 space-y-3 text-text/70">
+        <li class="flex gap-3">
+          <span class="mt-1 text-terracotta">→</span>
+          <span>Личный кабинет специалиста (история сеансов, программы восстановления, напоминания)</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="mt-1 text-terracotta">→</span>
+          <span>Запуск маркетплейса: личные кабинеты и каталог специалистов</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <LeadForm slot="cta" wrapped={false} formSource="case_massash" title="Обсудить похожий проект" />
+</CaseLayout>

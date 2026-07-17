@@ -1,12 +1,24 @@
 ---
 import CTAButton from "./CTAButton.astro";
+
+interface Props {
+  formSource?: string;
+  title?: string;
+  wrapped?: boolean;
+}
+
+const { formSource = "main_page", title = "Давайте обсудим задачу", wrapped = true } = Astro.props;
+
+const Wrapper = wrapped ? "section" : "div";
+const wrapperClass = wrapped ? "mx-auto max-w-6xl scroll-mt-20 px-4 py-16 sm:px-6 lg:px-8" : "";
 ---
 
-<section id="contact" class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+<Wrapper id="contact" class={wrapperClass}>
   <div class="rounded-3xl bg-white/60 p-8 shadow-soft sm:p-12">
-    <h2 class="text-3xl font-bold">Давайте обсудим задачу</h2>
+    <h2 class="text-3xl font-bold">{title}</h2>
 
-    <form id="lead-form-el" class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+    <form data-lead-form class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <input type="hidden" name="source" value={formSource} />
       <input
         type="text"
         name="name"
@@ -45,40 +57,41 @@ import CTAButton from "./CTAButton.astro";
         <CTAButton variant="primary" class="w-full sm:w-auto">Отправить заявку</CTAButton>
       </div>
 
-      <p id="lead-form-status" class="text-sm sm:col-span-2" role="status"></p>
+      <p class="lead-form-status text-sm sm:col-span-2" role="status"></p>
     </form>
   </div>
-</section>
+</Wrapper>
 
 <script>
   // TODO: заменить на реальный URL n8n после настройки сценария
   const N8N_WEBHOOK_URL = "https://n8n.example.com/webhook/lead-placeholder";
 
-  const form = document.getElementById("lead-form-el") as HTMLFormElement | null;
-  const status = document.getElementById("lead-form-status");
+  document.querySelectorAll<HTMLFormElement>("form[data-lead-form]").forEach((form) => {
+    const status = form.querySelector<HTMLElement>(".lead-form-status");
 
-  form?.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    if (!status) return;
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (!status) return;
 
-    const formData = new FormData(form);
-    const payload = Object.fromEntries(formData.entries());
+      const formData = new FormData(form);
+      const payload = Object.fromEntries(formData.entries());
 
-    status.textContent = "Отправка...";
+      status.textContent = "Отправка...";
 
-    try {
-      const response = await fetch(N8N_WEBHOOK_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
+      try {
+        const response = await fetch(N8N_WEBHOOK_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
 
-      if (!response.ok) throw new Error(`Request failed: ${response.status}`);
+        if (!response.ok) throw new Error(`Request failed: ${response.status}`);
 
-      status.textContent = "Спасибо! Мы свяжемся с вами в ближайшее время.";
-      form.reset();
-    } catch (error) {
-      status.textContent = "Не удалось отправить заявку. Попробуйте ещё раз или напишите нам напрямую.";
-    }
+        status.textContent = "Спасибо! Мы свяжемся с вами в ближайшее время.";
+        form.reset();
+      } catch (error) {
+        status.textContent = "Не удалось отправить заявку. Попробуйте ещё раз или напишите нам напрямую.";
+      }
+    });
   });
 </script>

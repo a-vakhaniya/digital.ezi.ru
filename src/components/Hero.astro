@@ -5,20 +5,20 @@ import heroCover from "../assets/images/hero-cover.png";
 ---
 
 <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-  <div class="flex flex-col items-center gap-10 lg:flex-row lg:items-center">
-    <div class="flex-1 text-center lg:text-left">
+  <div class="flex flex-col items-stretch gap-10 lg:flex-row lg:items-center">
+    <div class="order-2 flex-1 text-center lg:order-none lg:text-left">
       <h1 class="text-4xl font-extrabold sm:text-5xl">Внедрение ИИ в бизнес-процессы и жизнь</h1>
       <p class="mt-4 text-lg text-text/70">
         Александр Вахания — архитектор цифровых решений. Больше 10 лет в диджитале и годы работы
         с телом: от тренинга до массажа и реабилитации — опыт, который сходится в одном: сложная
         система работает, только когда каждый узел связан с остальными.
       </p>
-      <div class="mt-8 flex justify-center gap-4 lg:justify-start">
-        <CTAButton href="#contact" variant="primary">Обсудить задачу</CTAButton>
-        <CTAButton href="#portfolio" variant="secondary">Смотреть кейсы</CTAButton>
+      <div class="mt-8 flex flex-col gap-4 lg:flex-row lg:justify-start">
+        <CTAButton href="#contact" variant="primary" class="w-full lg:w-auto">Обсудить задачу</CTAButton>
+        <CTAButton href="#portfolio" variant="secondary" class="w-full lg:w-auto">Смотреть кейсы</CTAButton>
       </div>
     </div>
-    <div class="flex-1">
+    <div class="order-1 flex-1 lg:order-none">
       <div class="aspect-[43/24] w-full overflow-hidden rounded-3xl bg-mint/20 shadow-soft">
         <Image
           src={heroCover}
