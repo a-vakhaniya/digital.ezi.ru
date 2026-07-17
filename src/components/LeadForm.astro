@@ -7,7 +7,7 @@ interface Props {
   wrapped?: boolean;
 }
 
-const { formSource = "main_page", title = "Давайте обсудим задачу", wrapped = true } = Astro.props;
+const { formSource = "digital.ezi.ru — Главная страница", title = "Давайте обсудим задачу", wrapped = true } = Astro.props;
 
 const Wrapper = wrapped ? "section" : "div";
 const wrapperClass = wrapped ? "mx-auto max-w-6xl scroll-mt-20 px-4 py-16 sm:px-6 lg:px-8" : "";
